@@ -9,6 +9,6 @@ import rayan.buzzblocks.entity.ModEntites;
 public class BuzzBlocksClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        EntityRendererRegistry.register(ModEntites.POLLEN_PROJECTAIL, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntites.POLLEN_BALL_PROJECTIAL, FlyingItemEntityRenderer::new);
     }
 }
