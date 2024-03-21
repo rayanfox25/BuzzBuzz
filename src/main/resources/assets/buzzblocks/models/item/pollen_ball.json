@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "buzzblocks:item/pollen_ball"
+  }
+}

@@ -11,12 +11,14 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import rayan.buzzblocks.BuzzBlocks;
 import rayan.buzzblocks.block.ModBlocks;
+import rayan.buzzblocks.item.custom.Pollen_ball;
 
 
 public class ModItems {
 
 
     public static final Item ARTIFICIAL_HONEYCOMB = registerItem("artificial_honeycomb", new Item(new FabricItemSettings()));
+    public static final Item POLLEN_BALL = registerItem("pollen_ball", new Pollen_ball(new FabricItemSettings()));
 
 
     private static void addItemsToIngrendientTabItemGroup(FabricItemGroupEntries entries){

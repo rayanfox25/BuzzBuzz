@@ -27,6 +27,7 @@ public class ModItemGroups {
                     entries.add(ModBlocks.HONEY_SOAKED_PLANKS);
                     entries.add(ModItems.ARTIFICIAL_HONEYCOMB);
                     entries.add(ModBlocks.WOOD_PANELING);
+                    entries.add(ModItems.POLLEN_BALL);
 
                     //blocks
 

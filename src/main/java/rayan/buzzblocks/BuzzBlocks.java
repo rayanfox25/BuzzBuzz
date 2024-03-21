@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import rayan.buzzblocks.util.ModLootTableModifiers;
 
 import static rayan.buzzblocks.block.ModBlocks.*;
 import static rayan.buzzblocks.item.ModItemGroups.*;
@@ -19,10 +20,9 @@ public class BuzzBlocks implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		registerItemGroups();
-
-		registerModItems();
+        registerModItems();
 		registerModBlocks();
-
+		ModLootTableModifiers.modifyLootTables();
 		LOGGER.info("Hello Fabric world!");
 	}
 }
