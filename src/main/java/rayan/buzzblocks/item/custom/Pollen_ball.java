@@ -18,23 +18,23 @@ public class Pollen_ball extends Item {
         super(settings);
     }
 
-        @Override
-        public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-            ItemStack itemStack = user.getStackInHand(hand);
-            world.playSound(null, user.getX(), user.getY(), user.getZ(),
-                    SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
+    @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        ItemStack itemStack = user.getStackInHand(hand);
+        world.playSound(null, user.getX(), user.getY(), user.getZ(),
+                SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
 
-            if (!world.isClient) {
-                PollenBallProjectialEntity pollenBallProjectialEntity = new PollenBallProjectialEntity(user, world);
-                pollenBallProjectialEntity.setItem(itemStack);
-                pollenBallProjectialEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 1.5f, 1.0f);
-                world.spawnEntity(pollenBallProjectialEntity);
-            }
+        if (!world.isClient) {
+            PollenBallProjectialEntity pollenBallProjectialEntity = new PollenBallProjectialEntity(user, world);
+            pollenBallProjectialEntity.setItem(itemStack);
+            pollenBallProjectialEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 1.5f, 1.0f);
+            world.spawnEntity(pollenBallProjectialEntity);
+        }
 
-            user.incrementStat(Stats.USED.getOrCreateStat(this));
-            if (!user.getAbilities().creativeMode) {
-                itemStack.decrement(1);
-            }
-            return TypedActionResult.success(itemStack, world.isClient());
+        user.incrementStat(Stats.USED.getOrCreateStat(this));
+        if (!user.getAbilities().creativeMode) {
+            itemStack.decrement(1);
+        }
+        return TypedActionResult.success(itemStack, world.isClient());
     }
 }
