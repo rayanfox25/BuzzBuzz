@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ppp",
+    "pcp",
+    "php"
+  ],
+  "key": {
+    "p": {
+      "item": "buzzblocks:honey_soaked_planks"
+    },
+    "c": {
+      "item": "minecraft:honeycomb"
+    },
+    "h": {
+      "item": "minecraft:honey_bottle"
+    }
+  },
+  "result": {
+    "item": "minecraft:bee_nest"
+  }
+}

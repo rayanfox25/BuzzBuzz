@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "item": "buzzblocks:artificial_honeycomb"
+    },
+    "P": {
+      "item": "buzzblocks:wood_paneling"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "HHH",
+    "PPP"
+  ],
+  "result": {
+    "item": "minecraft:beehive"
+  }
+}

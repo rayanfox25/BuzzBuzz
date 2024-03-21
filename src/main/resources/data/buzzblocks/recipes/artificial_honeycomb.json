@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "sss",
+    "sPs",
+    "sss"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "buzzblocks:artificial_honeycomb",
+    "count" : 1
+  }
+}
