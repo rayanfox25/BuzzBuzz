@@ -18,7 +18,7 @@ public class PollenBallProjectialEntity extends ThrownItemEntity {
         super(entityType, world);
     }
     public PollenBallProjectialEntity(LivingEntity livingEntity, World world) {
-        super(ModEntites.POLLEN_PROJECTAIL, livingEntity, world);
+        super(ModEntites.POLLEN_BALL_PROJECTIAL, livingEntity, world);
     }
 
     @Override
