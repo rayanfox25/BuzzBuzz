@@ -22,7 +22,7 @@ public class ModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.15f))
-                        .with(ItemEntry.builder(ModItems.POLLEN_BALL))
+                        .with(ItemEntry.builder(ModItems.POLLEN_BAll))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
 
                 tableBuilder.pool(poolBuilder.build());
@@ -31,7 +31,7 @@ public class ModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.15f))
-                        .with(ItemEntry.builder(ModItems.POLLEN_BALL))
+                        .with(ItemEntry.builder(ModItems.POLLEN_BAll))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
 
                 tableBuilder.pool(poolBuilder.build());

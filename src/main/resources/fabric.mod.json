@@ -15,6 +15,9 @@
 	"icon": "assets/buzzblocks/icon.png",
 	"environment": "*",
 	"entrypoints": {
+		"client": [
+			"rayan.buzzblocks.BuzzBlocksClient"
+		],
 		"main": [
 			"rayan.buzzblocks.BuzzBlocks"
 		],

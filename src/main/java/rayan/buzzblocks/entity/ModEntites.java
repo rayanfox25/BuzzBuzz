@@ -12,7 +12,16 @@ import rayan.buzzblocks.entity.custom.PollenBallProjectialEntity;
 
 public class ModEntites {
 
+    public static void Pollenball()
+    {
+
+    }
+
     public static final EntityType<PollenBallProjectialEntity> POLLEN_BALL_PROJECTIAL = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(BuzzBlocks.MOD_ID, "polllen_ball"), FabricEntityTypeBuilder.<PollenBallProjectialEntity>create(SpawnGroup.MISC ,PollenBallProjectialEntity::new )
                     .dimensions(EntityDimensions.fixed(0.25f,0.25f)).build());
+
 }
+
+
+
