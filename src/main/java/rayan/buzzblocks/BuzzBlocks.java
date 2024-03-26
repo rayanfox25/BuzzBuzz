@@ -2,11 +2,8 @@ package rayan.buzzblocks;
 
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rayan.buzzblocks.entity.ModEntites;
 import rayan.buzzblocks.util.ModLootTableModifiers;
 
 import static rayan.buzzblocks.block.ModBlocks.*;
@@ -28,7 +25,6 @@ public class BuzzBlocks implements ModInitializer {
 		registerModBlocks();
 		ModLootTableModifiers.modifyLootTables();
 		Pollenball();
-
 		LOGGER.info("Hello Fabric world!");
 	}
 }

@@ -21,7 +21,7 @@ public class Pollen_ball extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         world.playSound(user, user.getX(), user.getY(), user.getZ(),
-                SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.NEUTRAL, 0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
+                SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.AMBIENT, 0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
 
         if (!world.isClient) {
             PollenBallProjectialEntity pollenBallProjectialEntity = new PollenBallProjectialEntity(user, world);

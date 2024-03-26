@@ -11,5 +11,6 @@ public class BuzzBlocksClient implements ClientModInitializer {
     public void onInitializeClient() {
         EntityRendererRegistry.register(ModEntites.POLLEN_BALL_PROJECTIAL, FlyingItemEntityRenderer::new);
 
+
     }
 }
