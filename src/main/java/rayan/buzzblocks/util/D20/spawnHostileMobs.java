@@ -28,6 +28,7 @@ public class spawnHostileMobs {
             if (entity != null) {
                 entity.refreshPositionAndAngles(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, world.random.nextFloat() * 360.0F, 0.0F);
                 world.spawnEntity(entity);
+
             }
         }
     }

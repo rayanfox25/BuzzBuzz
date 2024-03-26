@@ -3,7 +3,9 @@ package rayan.buzzblocks.util.D20;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -28,6 +30,13 @@ public class dropRandomFlowers {
 
             // Drop the random flower block
             world.spawnEntity(new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, new ItemStack(flowerBlock, 1)));
+        }
+    }
+
+    private void sendMessageToPlayers(String message) {
+        // Send message to all players in the world
+        for (PlayerEntity player : world.getPlayers()) {
+            player.sendMessage(Text.of(message), false);
         }
     }
 }

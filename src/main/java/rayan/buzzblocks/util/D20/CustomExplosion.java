@@ -1,13 +1,15 @@
 package rayan.buzzblocks.util.D20;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.World;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 
 public class CustomExplosion {
     private final World world;
@@ -26,8 +28,16 @@ public class CustomExplosion {
             explosion.collectBlocksAndDamageEntities();
             explosion.affectWorld(true);
             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 1.0f, 1.0f);
+            sendMessageToPlayers("You rolled a 3 Better hope your at a safe distance");
         }
         spawnExplosionParticles();
+    }
+
+    private void sendMessageToPlayers(String message) {
+        // Send message to all players in the world
+        for (PlayerEntity player : world.getPlayers()) {
+            player.sendMessage(Text.of(message), false);
+        }
     }
 
     @Environment(EnvType.CLIENT)

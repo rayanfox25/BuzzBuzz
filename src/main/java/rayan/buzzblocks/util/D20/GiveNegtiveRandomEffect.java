@@ -3,7 +3,9 @@ package rayan.buzzblocks.util.D20;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import rayan.buzzblocks.BuzzBlocks;
 
@@ -38,6 +40,7 @@ public class GiveNegtiveRandomEffect {
         } else {
             BuzzBlocks.LOGGER.error("Player is null. Cannot apply status effect.");
         }
+        sendMessageToPlayers("");
     }
 
     // Helper method to get all the status effects you want to consider
@@ -56,5 +59,12 @@ public class GiveNegtiveRandomEffect {
         effects.add(StatusEffects.LEVITATION);
         // Add more negative effects as needed
         return effects;
+    }
+
+    private void sendMessageToPlayers(String message) {
+        // Send message to all players in the world
+        for (PlayerEntity player : world.getPlayers()) {
+            player.sendMessage(Text.of(message), false);
+        }
     }
 }
