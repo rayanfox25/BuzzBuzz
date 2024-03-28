@@ -71,7 +71,7 @@ public class PollenBallProjectialEntity extends ThrownItemEntity {
                     0.09, //sandstonePyramidSpawnProbability
                     0.09, //effectProbability Positive
                     0.09, //effectProbability Negative
-                    1.09
+                    0.09
             ); // Must add/sum to 1
             probabilityFactors = CustomMaths.preCalculateCumulativeProbabilities(probabilityFactors);
             int switchValue = CustomMaths.weightedRandomSelection(probabilityFactors);

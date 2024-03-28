@@ -7,18 +7,18 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class TNTTrap {
     private static final int RADIUS = 2; // Radius of the cylinder
 
-    public static void triggerTrap(World world, PlayerEntity player) {
+    public static void triggerTrap(World world, @NotNull PlayerEntity player) {
         BlockPos playerPos = player.getBlockPos();
 
         // Place iron bars around the player in a cylinder shape with a solid stone brick base
         placeIronBars(world, playerPos);
-
         // Apply Slowness effect to the player to prevent movement
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, 100));
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 100, 100));
 
         // Spawn primed TNT near the player with a fuse of 5 seconds
         BlockPos trapCenter = new BlockPos((int) player.getX(), (int) player.getY(), (int) player.getZ());
@@ -28,57 +28,67 @@ public class TNTTrap {
         spawnPrimedTNT(world, trapCenter);
         spawnPrimedTNT(world, trapCenter);
         spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
+        spawnPrimedTNT(world, trapCenter);
 
-        // Trap the player within the cylinder
-        trapPlayer(world, player, trapCenter);
+
     }
+    private static void placeIronBars(World world, BlockPos playerPos) {
+        // Define the center position for the cage
+        int centerX = playerPos.getX();
+        int centerY = playerPos.getY() + 1; // Adjust to be at the player's feet level
+        int centerZ = playerPos.getZ();
 
-    private static void placeIronBars(World world, BlockPos center) {
-        int startY = center.getY() - 1; // Start placing bars from one block below the player
-        int endY = startY + 3; // Extend bars upward by 3 blocks
-        BlockPos basePos = center.down(); // Position for the base
+        int startY = centerY; // Y position of the bottom layer of the cage
+        int endY = startY + 4; // Extend the cage upward by 4 blocks
 
-        // Place stone bricks as the base
-        for (int xOffset = -RADIUS; xOffset <= RADIUS; xOffset++) {
-            for (int zOffset = -RADIUS; zOffset <= RADIUS; zOffset++) {
-                BlockPos pos = basePos.add(xOffset, 0, zOffset);
-                world.setBlockState(pos, Blocks.STONE_BRICKS.getDefaultState());
-            }
-        }
-
-        // Place iron bars around the player
-        for (int yOffset = startY; yOffset < endY; yOffset++) {
+        // Place iron bars around the player's feet
+        for (int yOffset = startY; yOffset <= endY; yOffset++) {
             for (int xOffset = -RADIUS; xOffset <= RADIUS; xOffset++) {
                 for (int zOffset = -RADIUS; zOffset <= RADIUS; zOffset++) {
-                    BlockPos pos = center.add(xOffset, yOffset, zOffset);
-                    // Check if the block is at the same Y-level as the center
-                    if (world.getBlockState(pos).isAir() || world.getBlockState(pos).getBlock() == Blocks.WATER) {
-                        if (yOffset == startY || yOffset == endY - 1 || xOffset == -RADIUS || xOffset == RADIUS || zOffset == -RADIUS || zOffset == RADIUS) {
-                            world.setBlockState(pos, Blocks.IRON_BARS.getDefaultState());
-                        }
+                    BlockPos pos = new BlockPos(centerX + xOffset, yOffset, centerZ + zOffset);
+                    // Place iron bars if at the edge or at the same level as the player's feet
+                    if (Math.abs(xOffset) == RADIUS || Math.abs(zOffset) == RADIUS || yOffset == startY) {
+                        world.setBlockState(pos, Blocks.IRON_BARS.getDefaultState());
                     }
                 }
             }
         }
 
-        // Place stone bricks at the top and bottom layers
-        for (int xOffset = -RADIUS; xOffset <= RADIUS; xOffset++) {
-            for (int zOffset = -RADIUS; zOffset <= RADIUS; zOffset++) {
-                BlockPos topPos = center.add(xOffset, endY - 1, zOffset);
-                BlockPos bottomPos = center.add(xOffset, startY, zOffset);
-                world.setBlockState(topPos, Blocks.STONE_BRICKS.getDefaultState());
-                world.setBlockState(bottomPos, Blocks.STONE_BRICKS.getDefaultState());
+        // Place stone bricks at the top and bottom layers of the cage
+        BlockPos bottomBase = new BlockPos(centerX - RADIUS, startY - 1, centerZ - RADIUS);
+        BlockPos topBase = new BlockPos(centerX - RADIUS, endY, centerZ - RADIUS);
+
+        // Fill in the base with stone bricks
+        for (int x = 0; x <= 2 * RADIUS; x++) {
+            for (int z = 0; z <= 2 * RADIUS; z++) {
+                world.setBlockState(bottomBase.add(x, 0, z), Blocks.STONE_BRICKS.getDefaultState());
+                world.setBlockState(topBase.add(x, 0, z), Blocks.STONE_BRICKS.getDefaultState());
             }
         }
-    }
 
-    private static void trapPlayer(World world, PlayerEntity player, BlockPos trapCenter) {
-        // No further action needed since the Slowness effect is applied to prevent movement
+        // Teleport the player into the cage
+        PlayerEntity player = world.getClosestPlayer(centerX, centerY, centerZ, 2, false);
+        if (player != null) {
+            player.teleport(centerX, centerY + 1, centerZ);
+        }
     }
+        private static void spawnPrimedTNT (World world, @NotNull BlockPos pos){
+            TntEntity tnt = new TntEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, null);
+            tnt.setFuse(100); // 20 ticks per second, so 100 ticks = 5 seconds
+            world.spawnEntity(tnt);
 
-    private static void spawnPrimedTNT(World world, BlockPos pos) {
-        TntEntity tnt = new TntEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, null);
-        tnt.setFuse(20); // 20 ticks per second, so 100 ticks = 5 seconds
-        world.spawnEntity(tnt);
+        }
+
     }
-}
